@@ -7,7 +7,7 @@ public class MyTicTacToe {
 
     public static final int GAME_SIZE = 3;
 
-    char[][] game = new char[GAME_SIZE][GAME_SIZE];
+    char [][] game = new char[GAME_SIZE][GAME_SIZE];
 
     Player player1;
     Player player2;
@@ -46,8 +46,7 @@ public class MyTicTacToe {
         return move;
     }
 
-    public void makeMove(Move move, char symbol) {
-        game[move.line][move.col] = symbol;
+    public void makeMove(Move move, char symbol) {game[move.line][move.col] = symbol;
     }
 
 
@@ -120,6 +119,30 @@ public class MyTicTacToe {
         return isWin;
 
     }
+    public boolean validateMove (Move move){
+        boolean validateMove = true;
+        if(move.line > 2 || move.col > 2){
+
+            validateMove = false;
+            System.out.println("alta mutare nu e buna");
+
+        }
+        return validateMove;
+
+
+
+    }
+
+    /*public boolean validateSymbol (Move move) {
+        boolean validateSymbol = true;
+
+        if (move.line == Move.myMove  && move.col == ) {
+            validateSymbol = true;
+
+        }
+        return validateSymbol;
+    }*/
+
 
 
     public void playGame() {
@@ -133,12 +156,47 @@ public class MyTicTacToe {
         int nrMoves = 0;
         boolean isWin = false;
 
+
+
+
+
         while (isWin == false && nrMoves < (GAME_SIZE * GAME_SIZE)) {
 
             //citesc mutare.... citire linie si coloana
             Move move = readMove();
 
-            //validez mutare
+
+//            validez mutare - TEMA
+            boolean moveIsValid = validateMove(move); // apelez metoda
+            while (!moveIsValid){
+                move = readMove();                   //citesc mutare
+                moveIsValid = validateMove(move);    // validez mutare
+
+            }
+
+            /*boolean moveIsValidSymbol = validateSymbol(move);
+            while(!moveIsValidSymbol){
+                move = readMove();
+                moveIsValidSymbol = validateSymbol(move);
+            }*/
+
+            /*if (move.col <= 2 || move.col <= 2){
+                System.out.println(" Efectueaza alta mutare");
+                readMove();
+
+            }else{
+                System.out.println(" e mai mare ca 2");
+                playGame();
+            }
+
+            if(move == makeMove();{
+                makeMove(move, currentSymbol);
+                showGame();
+
+            }else{
+                playGame();
+            }*/
+
             //efectuez mutare
             makeMove(move, currentSymbol);
             showGame();
@@ -174,3 +232,4 @@ public class MyTicTacToe {
 
     }
 }
+
